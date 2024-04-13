@@ -597,7 +597,7 @@ public class OVRVirtualKeyboard : MonoBehaviour
 
     void OnEnable()
     {
-        ShowKeyboard();
+        //ShowKeyboard();
     }
 
     void OnDisable()

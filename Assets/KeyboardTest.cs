@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,10 +15,10 @@ public class KeyboardTest : MonoBehaviour
 
     public Text Text;
 
-    public TouchScreenKeyboard overlayKeyboard;
-
     void Start()
     {
+        Debug.Log("START!!!!!!!");
+        ShowPanel.onClick.RemoveAllListeners();
         ShowPanel.onClick.AddListener((() =>
         {
             Panel.SetActive(true);
@@ -24,6 +26,7 @@ public class KeyboardTest : MonoBehaviour
             HidePanel.gameObject.SetActive(true);
         }));
         
+        HidePanel.onClick.RemoveAllListeners();
         HidePanel.onClick.AddListener((() =>
         {
             Panel.SetActive(false);
@@ -31,22 +34,36 @@ public class KeyboardTest : MonoBehaviour
             HidePanel.gameObject.SetActive(false);
         }));
         
+        ShowKeyboard.onClick.RemoveAllListeners();
         ShowKeyboard.onClick.AddListener(() =>
         {
-            overlayKeyboard = TouchScreenKeyboard.Open(Text.text, TouchScreenKeyboardType.Default);
+            Keyboard.overlayKeyboard = null;
+            GC.Collect();
+            
+            Keyboard.overlayKeyboard = TouchScreenKeyboard.Open(Text.text, TouchScreenKeyboardType.Default);
         });
     }
 
     void Update()
     {
-        if (overlayKeyboard != null)
+        if (Keyboard.overlayKeyboard != null)
         {
-            Text.text = overlayKeyboard.text;
+            Text.text = Keyboard.overlayKeyboard.text;
         }
+    }
 
-        if (overlayKeyboard != null && !overlayKeyboard.active)
-        {
-            overlayKeyboard = null;
-        }
+    private void OnApplicationFocus(bool hasFocus)
+    {
+        Debug.Log("OnApplicationFocus!!!!!!!");
+    }
+
+    private void OnEnable()
+    {
+        Debug.Log("OnEnable!!!!!!!");
+    }
+
+    private void OnDestroy()
+    {
+        Debug.Log("OnDestroy!!!!!!!");
     }
 }
