@@ -9,6 +9,7 @@ using UnityEngine.UI;
 public class KeyboardTest : MonoBehaviour
 {
     public Button ShowKeyboard;
+    public Button SaveFile;
     public Button ShowPanel;
     public Button HidePanel;
     public GameObject Panel;
@@ -42,6 +43,14 @@ public class KeyboardTest : MonoBehaviour
             
             Keyboard.overlayKeyboard = TouchScreenKeyboard.Open(Text.text, TouchScreenKeyboardType.Default);
         });
+        
+        SaveFile.onClick.AddListener((() =>
+        {
+            Debug.Log("SAVE FILE!!!");
+            var reportsFolder = Application.persistentDataPath + "/Reports/";
+            Debug.Log(reportsFolder);
+            PDFSave.Save(reportsFolder, "Report");
+        }));
     }
 
     void Update()

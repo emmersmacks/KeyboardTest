@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Oculus/VR/Scenes/VirtualKeyboard.unity
-    guid: c9684441ee1da1244a223118fdaa5d13
+    path: Assets/VirtualKeyboard.unity
+    guid: 4d927a332bd1e8946a226201293f637a
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: a23e5ad6203ac6349b008dce882a9b99, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 668735792e81cd34fb15430775ea740b, type: 2}
